@@ -1,35 +1,79 @@
+namespace myTiles {
+    //% blockIdentity=images._tile
+    export const tile0 = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+}
+// this block lets the game be finished when you hit a
+// tree
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     game.over(false)
 })
+// this makes it so the bird flies every time you
+// press any button
 controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.vy = -100
+    fish.vy = -100
 })
-let projectile2: Sprite = null
-let projectile: Sprite = null
-let bottomImage: Image = null
-let topImage: Image = null
+let pillar: Sprite = null
+let pillar2: Sprite = null
+let bottom_pillar: Image = null
+let top_pillar: Image = null
 let gap = 0
-let mySprite: Sprite = null
-mySprite = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . c c c c . . . 
-. . . . . . . c c d d d d c . . 
-. . . . . c c c c c c d d c . . 
-. . . c c c 4 4 4 4 d c c c c c 
-. . c 4 4 1 4 4 4 4 4 1 c c 4 f 
-. c 4 4 4 4 1 4 4 4 4 d 1 f 4 f 
-f 4 4 4 4 4 1 4 4 4 4 4 1 f 4 f 
-f 4 4 f 4 4 1 4 c f 4 4 1 4 4 f 
-f 4 4 4 4 4 1 c 4 f 4 4 1 f f f 
-. f 4 4 4 4 1 4 4 f 4 4 d f . . 
-. . f 4 4 1 4 c c 4 4 d f . . . 
-. . . f d 4 4 4 4 4 4 c f . . . 
-. . . . f f 4 4 4 4 c d b c . . 
-. . . . . . f f f f d d d c . . 
-. . . . . . . . . . c c c . . . 
+let fish: Sprite = null
+fish = sprites.create(img`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . f f f f . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . f 6 6 6 6 f . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . f 6 6 6 f 8 4 f . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . f 6 8 8 8 8 f . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . f 8 8 8 8 8 f . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . f 8 8 8 8 8 8 f . . . . . . . . . . . . . 
+. . . . . . . . . . . . . f 8 8 8 8 8 8 8 8 f . . . . . . . . . . . . 
+. . . . . . . . . . . . f 8 8 8 8 8 8 8 8 8 8 f . . . . . . . . . . . 
+. . . . . . . . . . . . f 8 8 8 8 8 8 8 8 8 8 f . . . . . . . . . . . 
+. . . . . . . . . . . f 8 8 8 8 8 8 8 8 8 8 1 f . . . . . . . . . . . 
+. . . . . . . . . . . f 8 8 8 8 8 8 8 8 8 1 1 f . . . . . . . . . . . 
+. . . . . . . . . . f 8 8 8 8 8 8 8 8 8 1 1 1 f . . . . . . . . . . . 
+. . . . . . . . . f 8 8 8 8 f 8 8 8 8 1 1 1 f . . . . . . . . . . . . 
+. . . . . . . . f 8 8 8 f f 8 8 8 8 1 1 1 f . . . . . . . . . . . . . 
+. . . . . . f f 8 8 f f . . f f f f f f f . . . . . . . . . . . . . . 
+. . . . f f . . f f . . . . . f . . . f . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . f f . . f f . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . f f . . f f . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
-mySprite.ay = 300
-mySprite.setFlag(SpriteFlag.StayInScreen, true)
+fish.ay = 300
+fish.setFlag(SpriteFlag.StayInScreen, true)
 scene.setBackgroundImage(img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -152,11 +196,13 @@ d 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 d d d d d d d d d d d d 7 7 7 7 7 d d 
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
 `)
+// this makes it so the pillars fly at you and the
+// score changes
 game.onUpdateInterval(1500, function () {
     info.changeScoreBy(1)
     gap = Math.randomRange(1, 3)
     if (gap == 0) {
-        topImage = img`
+        top_pillar = img`
 . . . . . 6 e e e e e e e e e e c e 6 . . . . . 
 . . . . 6 7 7 6 e e e e e e e e e 6 7 6 . . . . 
 . . . 6 7 7 6 6 6 6 e e e e 6 7 6 6 7 7 6 . . . 
@@ -174,7 +220,7 @@ game.onUpdateInterval(1500, function () {
 . . . . . . . b e e e e e e e e b . . . . . . . 
 . . . . . . . . b e e e e e e b . . . . . . . . 
 `
-        bottomImage = img`
+        bottom_pillar = img`
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . b b b b . . . . . . . . . . 
@@ -241,7 +287,7 @@ game.onUpdateInterval(1500, function () {
 . . . . . . c c 6 c c c c c c 6 c f . . . . . . 
 `
     } else if (gap == 1) {
-        topImage = img`
+        top_pillar = img`
 . . . . . 6 f e e e e e e e e e e f 6 . . . . . 
 . . . . 6 7 7 6 e e e e e e e e e 6 7 6 . . . . 
 . . . 6 7 7 7 6 6 6 e e e e 6 6 6 7 7 7 6 . . . 
@@ -275,7 +321,7 @@ game.onUpdateInterval(1500, function () {
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
 `
-        bottomImage = img`
+        bottom_pillar = img`
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . b b b b . . . . . . . . . . 
@@ -342,7 +388,7 @@ game.onUpdateInterval(1500, function () {
 . . . . . . c c 6 c c c c c c 6 c f . . . . . . 
 `
     } else if (gap == 2) {
-        topImage = img`
+        top_pillar = img`
 . . . . . 6 f e e e e e e e e e e f 6 . . . . . 
 . . . . 6 7 7 6 e e e e e e e e e 6 7 6 . . . . 
 . . . 6 7 7 7 6 6 6 e e e e 6 6 6 7 7 7 6 . . . 
@@ -392,7 +438,7 @@ game.onUpdateInterval(1500, function () {
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
 `
-        bottomImage = img`
+        bottom_pillar = img`
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -435,7 +481,7 @@ game.onUpdateInterval(1500, function () {
 . . . . . . e e 6 e e e e e e 6 c e . . . . . . 
 `
     } else {
-        topImage = img`
+        top_pillar = img`
 . . . . . 6 f c e e e e e e e e e e 6 . . . . . 
 . . . . 6 7 7 6 e e e e e e e e e 6 7 6 . . . . 
 . . . 6 7 7 7 6 6 6 e e e e 6 6 6 6 7 7 6 . . . 
@@ -493,7 +539,7 @@ game.onUpdateInterval(1500, function () {
 . . . . . . . . b e e e e e e b . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
 `
-        bottomImage = img`
+        bottom_pillar = img`
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . b b b b . . . . . . . . . . 
 . . . . . . . . b b d d d d b b . . . . . . . . 
@@ -520,11 +566,13 @@ game.onUpdateInterval(1500, function () {
 . . . . . . e e 6 e e e e e e 6 e e f . . . . . 
 `
     }
-    projectile = sprites.createProjectileFromSide(topImage, -45, 0)
-    projectile.top = 0
-    projectile2 = sprites.createProjectileFromSide(bottomImage, -45, 0)
-    projectile.bottom = scene.screenHeight()
+    pillar2 = sprites.createProjectileFromSide(top_pillar, -45, 0)
+    pillar2.top = 0
+    pillar = sprites.createProjectileFromSide(bottom_pillar, -45, 0)
+    pillar2.bottom = scene.screenHeight()
 })
+// this is so that after a certain amount of time the
+// backround image will update
 game.onUpdate(function () {
     if (info.score() == 15) {
         scene.setBackgroundImage(img`
@@ -776,6 +824,6 @@ a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a 
     }
 })
 game.onUpdateInterval(1000, function () {
-    projectile.vx += -10
-    projectile2.vx += -10
+    pillar2.vx += -10
+    pillar.vx += -10
 })
